@@ -10,6 +10,9 @@ namespace Tutorial8.Services
         public async Task<List<TripDTO>> GetAllTripsAsync()
         {
             var list = new List<TripDTO>();
+			//Zapytanie SQL pobierające dane wycieczek oraz powiązane z nimi kraje.
+            //Każdy wiersz wyniku reprezentuje parę (wycieczka, jeden z jej krajów).
+            //Jeśli wycieczka ma wiele krajów, pojawi się w wielu wierszach.
             const string command = @"SELECT t.IdTrip, t.Name, t.Description, t.DateFrom, t.DateTo, t.MaxPeople, c.IdCountry, c.Name
                                  FROM Trip t LEFT JOIN Country_Trip ct ON t.IdTrip=ct.IdTrip
                                  LEFT JOIN Country c ON ct.IdCountry=c.IdCountry ORDER BY t.IdTrip";

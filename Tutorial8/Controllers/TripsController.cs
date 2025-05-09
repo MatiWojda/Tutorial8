@@ -15,7 +15,8 @@ namespace Tutorial8.Controllers
         {
             _tripsService = tripsService;
         }
-
+		
+		//Kontroler zarządzający operacjami związanymi z wycieczkami.
         [HttpGet]
         public async Task<IActionResult> GetTrips()
         {

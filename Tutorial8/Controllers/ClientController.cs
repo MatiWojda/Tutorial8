@@ -15,7 +15,9 @@ namespace Tutorial8.Controllers
         {
             _service = service;
         }
+		
 
+        //Pobiera listę wycieczek przypisanych do klienta o podanym ID.
         [HttpGet("{id}/trips")]
         public async Task<IActionResult> GetClientTrips(int id)
         {
@@ -31,7 +33,8 @@ namespace Tutorial8.Controllers
 
             return Ok(trips);
         }
-
+		
+		//Tworzy nowego klienta na podstawie dostarczonych danych.
         [HttpPost]
         public async Task<IActionResult> CreateNewClient([FromBody] ClientDTO clientDto)
         {
@@ -47,7 +50,8 @@ namespace Tutorial8.Controllers
 
             return CreatedAtAction(nameof(GetClientTrips), new { id = clientId }, new { clientId });
         }
-
+		
+		//Przypisuje klienta o podanym ID do wycieczki o podanym ID.
         [HttpPut("{id}/trips/{tripId}")]
         public async Task<IActionResult> AddClientToTrip(int id, int tripId)
         {
@@ -70,7 +74,8 @@ namespace Tutorial8.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
+		
+		//Usuwa przypisanie klienta o podanym ID z wycieczki o podanym ID.
         [HttpDelete("{id}/trips/{tripId}")]
         public async Task<IActionResult> RemoveClientFromTrip(int id, int tripId)
         {
